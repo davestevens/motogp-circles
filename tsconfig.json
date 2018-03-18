@@ -17,6 +17,10 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
   },
+  "include": [
+    "typings/json.d.ts",
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "build",
