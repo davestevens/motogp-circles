@@ -1,7 +1,7 @@
 import * as React from "react";
 import { withRouter, RouteComponentProps } from "react-router";
 import { ListingWrapper } from "./ListingWrapper";
-import { Events } from "./Events";
+import { Sessions } from "./Sessions";
 
 interface ISessionListing {
     category: string;
@@ -12,7 +12,7 @@ const SessionListing: React.SFC<RouteComponentProps<ISessionListing>> = (
     { match: { params: { category, event } } }
 ): JSX.Element => (
     <ListingWrapper location={`sessions/${ category }/${ event }`}>
-        <Events baseUrl={`/${category}/${event}/`} />
+        <Sessions baseUrl={`/${category}/${event}/`} />
     </ListingWrapper>
 );
 

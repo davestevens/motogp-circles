@@ -7,9 +7,9 @@ interface IProps {
 }
 
 export const Events: React.SFC<IProps> = ({ baseUrl, items }): JSX.Element => (
-    <div>
-        <div>Events</div>
-        <ul>
+    <div className="listing">
+        <div className="listing__title">Events</div>
+        <ul className="listing__items">
             {
                 items && items.map((event: string, index: number) => (
                     <li key={index}>

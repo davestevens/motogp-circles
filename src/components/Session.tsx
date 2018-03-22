@@ -71,11 +71,7 @@ class Session extends React.Component<any, IState> {
             return <Empty />;
         }
 
-        return (
-           <div className="times">
-                <Circle data={data} />
-            </div>
-        );
+        return <Circle data={data} />;
     }
 
     private formatData(riders: IRider[], times: ITime[]): IDatum[] {

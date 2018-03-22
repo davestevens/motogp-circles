@@ -7,9 +7,9 @@ interface IProps {
 }
 
 export const Categories: React.SFC<IProps> = ({ baseUrl, items }): JSX.Element => (
-    <div>
-        <div>Categories</div>
-        <ul>
+    <div className="listing">
+        <div className="listing__title">Categories</div>
+        <ul className="listing__items">
             {
                 items && items.map((category: string, index: number) => (
                     <li key={index}>

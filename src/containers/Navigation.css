@@ -1,0 +1,36 @@
+nav {
+    height: 3.75rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display: inline-block;
+    line-height: 3.75rem;
+    padding-left: 0.5rem;
+}
+
+nav li:after {
+    content: "/";
+    display: block;
+    float: left;
+    padding-right: 0.5rem;
+}
+
+nav li.no-separator {
+    padding-left: 0;
+}
+
+nav li.no-separator:after {
+    content: "";
+}
+
+nav li.active a {
+    text-decoration: none;
+}

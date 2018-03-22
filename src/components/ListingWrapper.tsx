@@ -3,6 +3,7 @@ import { Error } from "./Error";
 import { Loading } from "./Loading";
 import { Empty } from "./Empty";
 import { orderedKeys } from "../data";
+import "./Listing.css";
 
 interface IProps {
     children: React.ReactElement<any>;
