@@ -6,6 +6,10 @@
 # testing
 /coverage
 
+# production
+/build
+.firebaserc
+
 # misc
 .DS_Store
 .env.local
