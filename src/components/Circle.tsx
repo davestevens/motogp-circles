@@ -76,9 +76,9 @@ export class Circle extends React.Component<ICircle> {
                 strokeWidth={`${CIRCLE_STROKE_WIDTH}px`}
                 stroke={datum.color}
                 strokeDasharray={`${circumference}px`}
-                strokeDashoffset={`${-circumference}px`}
+                strokeDashoffset={`${circumference}px`}
                 data-transition-duration={DELAY + datum.diff}
-                data-dashoffset={`${-circumference * 0.25}px`}
+                data-dashoffset={`${circumference * 1.75}px`}
                 ref={(circle: SVGCircleElement) => this.circles.push(circle)}
             />
         );
