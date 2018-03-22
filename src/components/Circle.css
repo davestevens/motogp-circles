@@ -1,15 +1,15 @@
-svg {
+.circle {
     width: 100%;
     height: 100%;
 }
 
-svg circle {
+.circle circle {
     opacity: 0.8;
     transform: rotate(0.1deg);
     transition: stroke-dashoffset ease-in;
 }
 
-svg text {
+.circle text {
     opacity: 0;
     transition: opacity 0.3s ease-in;
     font-family: sans-serif;

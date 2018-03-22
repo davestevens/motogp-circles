@@ -45,6 +45,7 @@ export class Circle extends React.Component<ICircle> {
 
         return (
             <svg
+                className="circle"
                 viewBox={`0 0 ${size} ${size}`}
                 width={`${size}px`}
                 height={`${size}px`}
