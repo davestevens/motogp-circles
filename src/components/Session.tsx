@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { Error } from "./Error";
 import { Loading } from "./Loading";
 import { Empty } from "./Empty";
+import { Circle, IDatum } from "./Circle";
 import { value } from "../data";
 
 interface IState {
@@ -10,8 +11,23 @@ interface IState {
     errorMessage: string | null;
     event: string | null;
     session: string | null;
-    times: any;
+    data: IDatum[] | undefined;
 }
+
+interface IRider {
+    color: string;
+    name: string;
+}
+
+interface ITime {
+    diff: number;
+    value: string;
+}
+
+const DEFAULT_RIDER: IRider = {
+    color: "grey",
+    name: "Unknown"
+};
 
 class Session extends React.Component<any, IState> {
     constructor(props: any) {
@@ -22,7 +38,7 @@ class Session extends React.Component<any, IState> {
             errorMessage: null,
             event: null,
             session: null,
-            times: null
+            data: undefined
         };
     }
 
@@ -33,28 +49,45 @@ class Session extends React.Component<any, IState> {
 
     public componentDidMount(): void {
         const { category, event, session } = this.state;
-        value(`times/${ category }/events/${ event }/sessions/${ session }`)
-            .then((times) => this.setState({ times }))
+        Promise.all([
+            value(`riders/${ category }`),
+            value(`times/${ category }/events/${ event }/sessions/${ session }`)
+        ])
+            .then(([riders, times]) => this.formatData(riders, times))
+            .then((data) => this.setState({ data }))
             .catch((error) => this.setState({ errorMessage: error.message }));
     }
 
     public render(): JSX.Element {
-        const { errorMessage, times } = this.state;
+        const { errorMessage, data } = this.state;
 
         if (errorMessage) {
             return <Error message={errorMessage} />;
         }
-        if (!times) {
+        if (data === undefined) {
             return <Loading />;
         }
-        if (!Object.keys(times).length) {
+        if (!data) {
             return <Empty />;
         }
+
         return (
-           <div>
-                Times
+           <div className="times">
+                <Circle data={data} />
             </div>
         );
+    }
+
+    private formatData(riders: IRider[], times: ITime[]): IDatum[] {
+        return Object.keys(times).map((key) => {
+            const rider = Object.assign({}, DEFAULT_RIDER, riders[key]);
+            const time = times[key];
+            return {
+                color: rider.color,
+                diff: time.diff,
+                label: `${ time.value } : ${ rider.name }`
+            };
+        });
     }
 }
 
