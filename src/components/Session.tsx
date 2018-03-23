@@ -75,15 +75,22 @@ class Session extends React.Component<any, IState> {
     }
 
     private formatData(riders: IRider[], times: ITime[]): IDatum[] {
+        const formatter = this.createFormatter(Object.keys(times).map((key) => times[key].value));
         return Object.keys(times).map((key) => {
             const rider = Object.assign({}, DEFAULT_RIDER, riders[key]);
             const time = times[key];
             return {
                 color: rider.color,
                 diff: time.diff,
-                label: `${ time.value } : ${ rider.name }`
+                label: `${ formatter(time.value) } : ${ rider.name }`
             };
         });
+    }
+
+    private createFormatter(labels: string[]): (input: string) => string {
+        const longestString = Math.max(...labels.map((label: string) => label.length));
+        const padding = new Array(longestString).join(" ");
+        return (input: string): string => `${ padding }${ input }`.substr(-longestString);
     }
 }
 

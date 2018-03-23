@@ -12,5 +12,6 @@
 .circle text {
     opacity: 0;
     transition: opacity 0.3s ease-in;
-    font-family: sans-serif;
+    font-family: monospace;
+    white-space: pre;
 }
